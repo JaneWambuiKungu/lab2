@@ -24,12 +24,12 @@ public class JobScheduler {
 	    public static void main(String[] args) {
 	        JobScheduler scheduler = new JobScheduler();
 	        
-	        // Add jobs to the scheduler
+	        
 	        scheduler.addJob(new Job("Job 1"));
 	        scheduler.addJob(new Job("Job 2"));
 	        scheduler.addJob(new Job("Job 3"));
 	        
-	        // Cancel all jobs
+	        
 	        scheduler.cancelAllJobs();
 	    }
 
