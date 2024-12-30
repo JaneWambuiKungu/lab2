@@ -2,13 +2,13 @@ package scheduler;
 
 public class Job {
 
-	private String jobName;
+	public String jbName;
 
-    public Job(String jobName) {
-        this.jobName = jobName;
+    public Job(String jbName) {
+        this.jbName = jbName;
     }
 
     public void cancel() {
-        System.out.println("Cancelling job: " + jobName);
+        System.out.println("Cancelling job: " + jbName);
     }
 }
