@@ -1,4 +1,4 @@
-package j;
+
 
 import java.io.FileWriter;
 import java.io.IOException;
