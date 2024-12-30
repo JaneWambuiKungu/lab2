@@ -24,7 +24,7 @@ public class JobScheduler {
 	    public static void main(String[] args) {
 	        JobScheduler scheduler = new JobScheduler();
 	        
-	        
+	        //THIS ADDS JOBS IN ORDER TO CANCEL JOBS
 	        scheduler.addJob(new Job("Job 1"));
 	        scheduler.addJob(new Job("Job 2"));
 	        scheduler.addJob(new Job("Job 3"));
