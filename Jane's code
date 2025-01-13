@@ -60,3 +60,214 @@ public class Main {
         JobSummary.printJobSummary(jobs);
     }
 }
+package ischedule;
+
+
+public class Job {
+    private String jobId;
+    private String jobName;
+    private int jobDuration; // in hours
+    
+    public Job(String jobId, String jobName, int jobDuration) {
+        this.jobId = jobId;
+        this.jobName = jobName;
+        this.jobDuration = jobDuration;
+    }
+
+    public String getJobId() {
+        return jobId;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public int getJobDuration() {
+        return jobDuration;
+    }
+
+    @Override
+    public String toString() {
+        return "Job[ID=" + jobId + ", Name=" + jobName + ", Duration=" + jobDuration + " hours]";
+    }
+}
+package ischedule;
+import java.util.ArrayList;
+import java.util.List;
+
+public class JobCreator {
+    public static List<Job> createJobs() {
+        List<Job> jobs = new ArrayList<>();
+        // Sample job creation
+        jobs.add(new Job("1", "Design", 5));
+        jobs.add(new Job("2", "Development", 15));
+        jobs.add(new Job("3", "Testing", 8));
+        return jobs;
+    }
+    public static Job createJob(String jobId, String jobName, int jobDuration) {
+        return new Job(jobId, jobName, jobDuration);
+    }
+}
+package ischedule;
+import java.util.List;
+public class JobDeletor {
+    public static void deleteJob(List<Job> jobs, String jobId) {
+        jobs.removeIf(job -> job.getJobId().equals(jobId));
+    }
+}
+package ischedule;
+
+import java.util.List;
+
+public class JobEditor {
+    public static void editJob(List<Job> jobs, String jobId, String newJobName, int newJobDuration) {
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs.get(i).getJobId().equals(jobId)) {
+                // Create a new job object with the updated details and replace the old one
+                jobs.set(i, new Job(jobId, newJobName, newJobDuration));
+                break;
+            }
+        }
+    }
+}
+package ischedule;
+
+public class JobEntryValidator {
+    public static boolean validateNewJob(Job job) {
+        if (job == null) {
+            return false;
+        }
+        if (job.getJobName() == null || job.getJobName().trim().isEmpty()) {
+            return false;
+        }
+        if (job.getJobDuration() <= 0) {
+            return false;
+        }
+        return true;
+    }
+}
+package ischedule;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class JobFilter {
+    public static List<Job> filterJobsByDuration(List<Job> jobs, int minDuration) {
+        return jobs.stream()
+                .filter(job -> job.getJobDuration() >= minDuration)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Job> filterJobsByName(List<Job> jobs, String nameSubstring) {
+        return jobs.stream()
+                .filter(job -> job.getJobName().contains(nameSubstring))
+                .collect(Collectors.toList());
+    }
+}
+package ischedule;
+import java.util.List;
+
+public class JobScheduler {
+    public static void scheduleJobs(List<Job> jobs) {
+        // Simple FIFO scheduling
+        System.out.println("Job Schedule:");
+        for (Job job : jobs) {
+            System.out.println(job);
+        }
+    }
+
+public static void scheduleJobsByPriority(List<Job> jobs) {
+    // Placeholder for a priority-based scheduler (could be extended further)
+    jobs.sort((job1, job2) -> Integer.compare(job1.getJobDuration(), job2.getJobDuration()));
+    System.out.println("Job Schedule (Priority by Duration):");
+    for (Job job : jobs) {
+        System.out.println(job);
+    }
+}
+}
+package ischedule;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class JobSorter {
+    public static void sortJobsByDuration(List<Job> jobs) {
+        Collections.sort(jobs, Comparator.comparingInt(Job::getJobDuration));
+    }
+
+    public static void sortJobsByName(List<Job> jobs) {
+        Collections.sort(jobs, Comparator.comparing(Job::getJobName));
+    }
+}
+package ischedule;
+
+import java.util.List;
+
+public class JobSummary {
+    public static void printJobSummary(List<Job> jobs) {
+        int totalDuration = jobs.stream().mapToInt(Job::getJobDuration).sum();
+        System.out.println("Total number of jobs: " + jobs.size());
+        System.out.println("Total duration of all jobs: " + totalDuration + " hours");
+        jobs.forEach(job -> System.out.println(job));
+    }
+}
+package ischedule;
+
+import java.util.List;
+
+//In JobUpdater.java
+public class JobUpdater {
+ public static void updateJob(List<Job> jobs, String jobId, String newJobName, int newJobDuration) {
+     for (int i = 0; i < jobs.size(); i++) {
+         if (jobs.get(i).getJobId().equals(jobId)) {
+             // Create a new job with the updated details and replace the old job
+             jobs.set(i, new Job(jobId, newJobName, newJobDuration));
+             break;
+         }
+     }
+ }
+}
+package ischedule;
+
+import java.util.List;
+
+public class JobValidator {
+    public static boolean validateJob(Job job) {
+        // Validate if job duration is greater than 0
+        return job.getJobDuration() > 0;
+    }
+
+    public static boolean validateJobName(String jobName, List<Job> jobs) {
+        // Validate if the job name is unique
+        for (Job job : jobs) {
+            if (job.getJobName().equalsIgnoreCase(jobName)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+package ischedule;
+
+import java.util.List;
+
+public class JobViewer {
+    public static void viewJobs(List<Job> jobs) {
+        System.out.println("Viewing all jobs:");
+        for (Job job : jobs) {
+            System.out.println(job);
+        }
+    }
+
+    public static void viewJobDetails(List<Job> jobs, String jobId) {
+        for (Job job : jobs) {
+            if (job.getJobId().equals(jobId)) {
+                System.out.println("Job details: " + job);
+                return;
+            }
+        }
+        System.out.println("Job with ID " + jobId + " not found.");
+    }
+}
+
+
+
