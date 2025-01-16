@@ -1,1 +1,1 @@
-BlackBoxJobSchedulerTest.java is test file for 10 user stories done by Abdullah Langa (ail5)
+BlackBoxJobSchedulerTest.java is test file for 10 user stories done by Abdullah Langa (ail5) and to run this test file make sure you have code of my part saved in same package which are Job.java and JobSchedulingApp.java files
