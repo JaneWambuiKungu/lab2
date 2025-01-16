@@ -84,7 +84,8 @@ Menu Options:
 9. List Jobs
 
 10. Exit
-   After running the Main class, the console will display this following menu
+
+ After running the Main class, the console will display this following menu
  Here is an example interaction for this-
  Enter your choice: 1
 Enter your role (Admin, Manager, Developer, User): Admin
